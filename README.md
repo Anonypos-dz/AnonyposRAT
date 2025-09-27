@@ -138,9 +138,3 @@ The original project included strings mentioning advanced actions. In this educa
 * Keep audit logs and explicit, written permissions for any real-world testing.
 
 ---
-
-## Suggested safe modifications for learning
-
-* Replace any real I/O with deterministic simulation results so behavior is repeatable for unit tests.
-* Add a `--localhost-only` flag that enforces binding to `127.0.0.1` and refuses non-loopback addresses.
-* Ad
