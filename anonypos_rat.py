@@ -127,9 +127,10 @@ def server():
                         conn.send(cmd.encode());
                         data = ""
                         while True:
-                            data += conn.recv(1024).decode()
-                            if not data:
-                                break;
+                            chunk = conn.recv(1024).decode()
+                            if not chunk:
+                                break
+                            data += chunk
                         print(data)
                     else:
                         print("Please enter the command");
